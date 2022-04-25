@@ -44,7 +44,7 @@ function Signin() {
           Login with Google
         </button>
         <div>
-          <Link to="/reset">Forgot Password</Link>
+          <Link to="/resetpass">Forgot Password</Link>
         </div>
         <div>
           Don't have an account? <Link to="/signup">Register</Link> now.
