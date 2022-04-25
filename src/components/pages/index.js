@@ -33,7 +33,7 @@ class NameForm extends React.Component {
   handleSubmit(event) {
     console.log("text to summarize: " + this.state.value);
     event.preventDefault();
-    const r = fetch("http://127.0.0.1:5000/model", {  
+    const r = fetch("/model", {  
       method: 'POST', 
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({'text': this.state.value})
