@@ -1,35 +1,56 @@
-import React from 'react'
-import './signin.css'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, logInWithEmailAndPassword, signInWithGoogle } from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import "./signin.css"
 
-function SignIn() {
+function Signin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (loading) {
+      // maybe trigger a loading screen
+      return;
+    }
+    if (user) navigate("/dashboard");
+  }, [user, loading]);
   return (
-    <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '90vh',
-        }}
-    >
-        <form>
-            <div className="form-inner">
-                <h2>Login</h2>
-                {/* Error! */}
-                <div className="form-group">
-                    <label htmlFor="name">Name:</label>
-                    <input type="text" name="name" id="name"/>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="email">Email:</label>
-                    <input type="email" name="email" id="email" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password:</label>
-                    <input type="password" name="password" od="password"/>
-                </div>
-            </div>
-        </form>
+    <div className="login">
+      <div className="login__container">
+        <input
+          type="text"
+          className="login__textBox"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="E-mail Address"
+        />
+        <input
+          type="password"
+          className="login__textBox"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+        />
+        <button
+          className="login__btn"
+          onClick={() => logInWithEmailAndPassword(email, password)}
+        >
+          Login
+        </button>
+        <button className="login__btn login__google" onClick={signInWithGoogle}>
+          Login with Google
+        </button>
+        <div>
+          <Link to="/reset">Forgot Password</Link>
+        </div>
+        <div>
+          Don't have an account? <Link to="/signup">Register</Link> now.
+        </div>
+      </div>
     </div>
-  )
+  );
 }
-
-export default SignIn;
+export default Signin;

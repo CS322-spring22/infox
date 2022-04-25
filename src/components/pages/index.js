@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
-import React from 'react'
+import React, { useState } from "react";
+import SignUp from './signup';
 
 const Home = () => {
     return (
@@ -32,7 +33,7 @@ class NameForm extends React.Component {
   handleSubmit(event) {
     console.log("text to summarize: " + this.state.value);
     event.preventDefault();
-    const r = fetch("https://127.0.0.1:5000/model", {  
+    const r = fetch("http://127.0.0.1:5000/model", {  
       method: 'POST', 
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({'text': this.state.value})
@@ -57,7 +58,7 @@ class NameForm extends React.Component {
         <label>
           Submit article here:
           <p></p>
-          <textarea type="text" rows={10} cols={40} value={this.state.value} onChange={this.handleChange} />
+          <textarea type="text" rows={5} cols={40} value={this.state.value} onChange={this.handleChange} />
         </label>
         <p></p>
         <input type="submit" value="Submit" />
@@ -65,5 +66,41 @@ class NameForm extends React.Component {
     );
   }
 }
+/*
+function SendSummary(){
+  const [summaryText, setSummaryText] = useState("");
 
+  let handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      let res = await fetch("https://127.0.0.1:5000/model", {
+        method: "POST",
+        body: JSON.stringify({
+          text: summaryText,
+        }),
+      });
+      let resJson = await res.json();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
+  return(
+    <div className="input">
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={summaryText}
+          onChange={(e) => setSummaryText(e.target.value)}
+          placeholder="Enter some summary"
+        />
+        <button className="input__btn">
+          Input
+        </button>
+      </form>
+    </div>
+  )
+}
+*/
 export default Home;

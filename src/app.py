@@ -22,6 +22,7 @@ API_TOKEN = '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'
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
 @app.route("/model", methods=["GET", "POST"])
 def check_input():
+    print("hello world")
     if request.method == 'POST':
         print(request.json['text'])
         input = request.json['text']
