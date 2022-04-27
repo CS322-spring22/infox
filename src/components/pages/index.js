@@ -1,6 +1,9 @@
 import { render } from '@testing-library/react';
 import React, { useState } from "react";
 import SignUp from './signup';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from '../../firebase';
+
 /*
 const Home = () => {
     return (
@@ -69,13 +72,19 @@ class NameForm extends React.Component {
 */
 function SendSummary(){
   const [summaryText, setSummaryText] = useState("");
-
+  const [user] = useAuthState(auth)
+  var loggedIn = true;
   let handleSubmit = async (e) => {
+    if (!user){
+      console.log("no user logged in");
+      loggedIn = false;
+    }
     e.preventDefault();
+    console.log(JSON.stringify({'text': summaryText, 'loggedIn': loggedIn}));
     const r = fetch("/model", {  
       method: 'POST', 
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({'text': summaryText})
+      body: JSON.stringify({'text': summaryText, 'loggedIn': loggedIn})
     }).then((response) => response.json())
     .then((data) => {
       //console.log(data); //this shows the dictionary with key and response

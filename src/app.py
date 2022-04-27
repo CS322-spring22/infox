@@ -22,9 +22,12 @@ API_TOKEN = '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'
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
 @app.route("/model", methods=["GET", "POST"])
 def check_input():
-    print("hello world")
+    print("checking input")
     if request.method == 'POST':
-        print(request.json['text'])
+        print(request.json['text']) #here is the text to summarize
+        print(request.json['loggedIn']) #should be true if user is logged in
+        #TO DO----
+        #Check summary length using boolean from 'loggedIn'
         input = request.json['text']
         response = requests.post(API_URL, headers=headers, json=input)
         output = response.json()
