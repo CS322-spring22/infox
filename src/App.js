@@ -18,7 +18,7 @@ function App() {
       <Router>
         <Index />
         <Routes>
-          <Route path="/" exact element={<Home />} />
+          <Route path="/" exact element={<SendSummary />} />
           <Route path="/settings" element={Settings} />
           <Route path="/history" element={History} />
           <Route path="/signup" element={<SignUp />} />

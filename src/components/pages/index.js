@@ -1,7 +1,7 @@
 import { render } from '@testing-library/react';
 import React, { useState } from "react";
 import SignUp from './signup';
-
+/*
 const Home = () => {
     return (
       <div style={{
@@ -66,23 +66,28 @@ class NameForm extends React.Component {
     );
   }
 }
-/*
+*/
 function SendSummary(){
   const [summaryText, setSummaryText] = useState("");
 
   let handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      let res = await fetch("https://127.0.0.1:5000/model", {
-        method: "POST",
-        body: JSON.stringify({
-          text: summaryText,
-        }),
+    const r = fetch("/model", {  
+      method: 'POST', 
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({'text': summaryText})
+    }).then((response) => response.json())
+    .then((data) => {
+      //console.log(data); //this shows the dictionary with key and response
+      return(data['summary_text']); //this shows just the response
+    });
+
+    const showAlert = () => {
+      r.then((a) => {
+        alert(a)
       });
-      let resJson = await res.json();
-    } catch (err) {
-      console.log(err);
     }
+    showAlert();
   };
 
 
@@ -102,5 +107,6 @@ function SendSummary(){
     </div>
   )
 }
-*/
-export default Home;
+
+//export default Home;
+export default SendSummary;
