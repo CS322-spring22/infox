@@ -6,7 +6,7 @@ import {
   registerWithEmailAndPassword,
   signInWithGoogle,
 } from "../../firebase";
-import "./signup.css";
+import "./loginform.css";
 function SignUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,43 +22,53 @@ function SignUp() {
     if (user) navigate("/dashboard");
   }, [user, loading]);
   return (
-    <div className="register">
-      <div className="register__container">
-        <input
-          type="text"
-          className="register__textBox"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
-        />
-        <input
-          type="text"
-          className="register__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="register__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button className="register__btn" onClick={register}>
-          Register
-        </button>
-        <button
-          className="register__btn register__google"
-          onClick={signInWithGoogle}
-        >
-          Register with Google
-        </button>
-        <div>
-          Already have an account? <Link to="/signin">Login</Link> now.
+    <div className="form-container">
+      <div className="form-content-left">Hello</div>
+      <div className="form-content-right">
+        <div className="form">
+          <h1>Get started with us today! Create your account by filling out the
+          information below.</h1>
+          <div className="form-inputs">
+            <label className='form-label'>Full Name</label>
+            <input
+              type="text"
+              className="form-input"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              // placeholder="Full Name"
+            />
+            <label className='form-label'>Email</label>
+            <input
+              type="text"
+              className="form-input"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              // placeholder="E-mail Address"
+            />
+            <label className='form-label'>Password</label>
+            <input
+              type="password"
+              className="form-input"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              // placeholder="Password"
+            />
+            <button className="form-input-btn" onClick={register}>
+              Register
+            </button>
+            <button
+              className="form-input-btn"
+              onClick={signInWithGoogle}
+            >
+              Register with Google
+            </button>
+            <div>
+              Already have an account? <Link to="/signin">Login</Link> now.
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </div>  
   );
 }
 export default SignUp;
