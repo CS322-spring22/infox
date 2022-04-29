@@ -26,8 +26,7 @@ def check_input():
     if request.method == 'POST':
         print(request.json['text']) #here is the text to summarize
         print(request.json['loggedIn']) #should be true if user is logged in
-        #TO DO----
-        #Check summary length using boolean from 'loggedIn'
+        #TODO Check summary length using boolean from 'loggedIn'
         input = request.json['text']
         response = requests.post(API_URL, headers=headers, json=input)
         output = response.json()

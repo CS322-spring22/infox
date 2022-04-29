@@ -1,2 +1,3 @@
+npm update react-router-DOM
 npm install firebase
 npm install react-firebase-hooks
