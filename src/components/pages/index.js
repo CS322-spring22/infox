@@ -82,10 +82,10 @@ function SendSummary(){
     }
     e.preventDefault();
     console.log(JSON.stringify({'text': summaryText, 'loggedIn': loggedIn}));
-    const r = fetch("/model", {  
+    const r = fetch("https://avganshina.pythonanywhere.com/model", {
       method: 'POST', 
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({'text': summaryText, 'loggedIn': loggedIn})
+      body: JSON.stringify({'text': this.state.value})
     }).then((response) => response.json())
     .then((data) => {
       //console.log(data); //this shows the dictionary with key and response
