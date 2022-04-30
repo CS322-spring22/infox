@@ -85,10 +85,10 @@ function SendSummary(){
     const r = fetch("https://avganshina.pythonanywhere.com/model", {
       method: 'POST', 
       headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({'text': this.state.value})
+      body: JSON.stringify({'text': summaryText})
     }).then((response) => response.json())
     .then((data) => {
-      //console.log(data); //this shows the dictionary with key and response
+      console.log(data); //this shows the dictionary with key and response
       return(data['summary_text']); //this shows just the response
     });
 
