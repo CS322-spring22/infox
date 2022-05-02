@@ -15,7 +15,7 @@ function Reset() {
   }, [user, loading]);
   return (
     <div className="form-container">
-      <div className="form-content-left">Hello</div>
+      <div className="form-content-left"></div>
       <div className="form-content-right">
         <div className="form">
           <h1>Forgot your password? Enter your email to recover your account.</h1>

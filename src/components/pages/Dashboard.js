@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
-import "./Dashboard.css";
+import { useNavigate, Link } from "react-router-dom";
+import "./loginform.css";
 import { auth, db, logout } from "../../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 function Dashboard() {
@@ -25,16 +25,24 @@ function Dashboard() {
     fetchUserName();
   }, [user, loading]);
   return (
-    <div className="dashboard">
-       <div className="dashboard__container">
-        Logged in as
-         <div>{name}</div>
-         <div>{user?.email}</div>
-         <button className="dashboard__btn" onClick={logout}>
-          Logout
-         </button>
-       </div>
-     </div>
+    <div className="form-container">
+    <div className="form-content-left"></div>
+    <div className="form-content-right">
+        <div className="form">
+          <div className="form-inputs">
+            <h1>Logged in as</h1>
+            <div><h1>{name}</h1></div>
+            <div><h1>{user?.email}</h1></div>
+            <button className="form-input-btn" onClick={logout}>
+              Logout
+            </button>
+            <div>
+              Return to the homepage <Link to="/">here</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 export default Dashboard;
