@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import SignUp from './signup';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from '../../firebase';
+import './index.css'
 
 /*
 const Home = () => {
@@ -11,7 +12,7 @@ const Home = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          height: '40vh',
+          height: '90vh',
           color: 'white'
           }}
       >
@@ -101,17 +102,21 @@ function SendSummary(){
 
 
   return(
-    <div className="input">
+    <div className="form-box">
+      <h5 className='form-step'>InfoX Article Summariser</h5>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={summaryText}
-          onChange={(e) => setSummaryText(e.target.value)}
-          placeholder="Enter some summary"
-        />
-        <button className="input__btn">
-          Input
-        </button>
+        <div className="field1">
+          <label>Word Limit: 200</label>
+          <textarea
+              type="text"
+              value={summaryText}
+              onChange={(e) => setSummaryText(e.target.value)}
+              placeholder="Paste Article"
+            />
+            <button className="input_btn">
+              Submit
+            </button>
+        </div>
       </form>
     </div>
   )
@@ -119,3 +124,4 @@ function SendSummary(){
 
 //export default Home;
 export default SendSummary;
+
