@@ -19,7 +19,7 @@ function Signin() {
   }, [user, loading]);
   return (
     <div className="form-container">
-      <div className="form-content-left">Hello</div>
+      <div className="form-content-left"></div>
       <div className="form-content-right">
         <div className="form">
           <h1>Enter your login details below to access your profile.</h1>
