@@ -80,6 +80,9 @@ function SendSummary(){
       console.log("no user logged in");
       loggedIn = false;
     }
+    else{
+      //add to history
+    }
     e.preventDefault();
     console.log(JSON.stringify({'text': summaryText, 'loggedIn': loggedIn}));
     const r = fetch("https://avganshina.pythonanywhere.com/model", {

@@ -2,7 +2,7 @@ import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { db } from '../../firebase';
 import { auth } from '../../firebase';
-import { collection, doc, getDocs, setDoc, addDoc, query, where } from 'firebase/firestore';
+import { collection, doc, getDocs, setDoc, addDoc, query, where, getDoc } from 'firebase/firestore';
 
 function History(){
   const user = useAuthState(auth);
@@ -11,15 +11,18 @@ function History(){
     if (!user){
       console.log("no user logged in");
     }
-    const usersRef = collection(db, 'users');
-    const q = query(usersRef, where("users","==","EZU4Ts8H9vR4XtDWGl4g"));
-    console.log(q);
-    
-    
-    const querySnapshot = await getDocs(collection(db, "users"));
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`);
-    });
+    const docRef = doc(db, "users", "EZU4Ts8H9vR4XtDWGl4g");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data()); //get doc
+      docSnap.data().History.forEach(s => {
+        console.log(s);
+      });
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
 
   }
 
