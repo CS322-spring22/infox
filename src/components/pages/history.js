@@ -11,19 +11,16 @@ function History(){
     if (!user){
       console.log("no user logged in");
     }
-    const docRef = doc(db, "users", "EZU4Ts8H9vR4XtDWGl4g");
-    const docSnap = await getDoc(docRef);
-
-    if (docSnap.exists()) {
-      console.log("Document data:", docSnap.data()); //get doc
-      docSnap.data().History.forEach(s => {
-        console.log(s);
+    const userID = user[0].uid; //get whoever is logged in
+    //make query of users data
+    const q = query(collection(db, "users"), where("uid", "==", userID));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      // doc.data() is never undefined for query doc snapshots
+      doc.data().History.forEach(s => {
+        console.log(s); //get all of history
       });
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
-    }
-
+    });
   }
 
   return (

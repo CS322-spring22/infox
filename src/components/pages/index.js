@@ -2,8 +2,9 @@ import { render } from '@testing-library/react';
 import React, { useState } from "react";
 import SignUp from './signup';
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
 import './index.css'
+import { updateDoc, doc } from 'firebase/firestore';
 
 /*
 const Home = () => {
@@ -73,17 +74,29 @@ class NameForm extends React.Component {
 */
 function SendSummary(){
   const [summaryText, setSummaryText] = useState("");
+  // [] AROUND USER IS IMPORTANT
   const [user] = useAuthState(auth)
   var loggedIn = true;
   let handleSubmit = async (e) => {
+    e.preventDefault();
     if (!user){
       console.log("no user logged in");
       loggedIn = false;
     }
     else{
       //add to history
+      const userID = user.uid; //get whoever is logged in
+      console.log(userID);
+      //const docRef = doc(db, "users", "EZU4Ts8H9vR4XtDWGl4g");
+      //const docSnap = await getDoc(docRef);    
+      /*
+      const userRef = doc(db, "users", userID)
+      console.log(userRef);
+      await updateDoc(userRef, {
+        submitted: true
+      });
+      */
     }
-    e.preventDefault();
     console.log(JSON.stringify({'text': summaryText, 'loggedIn': loggedIn}));
     const r = fetch("https://avganshina.pythonanywhere.com/model", {
       method: 'POST', 
