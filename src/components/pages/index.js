@@ -4,7 +4,16 @@ import SignUp from './signup';
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db } from '../../firebase';
 import './index.css'
-import { updateDoc, doc } from 'firebase/firestore';
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 
 /*
 const Home = () => {
@@ -86,16 +95,21 @@ function SendSummary(){
     else{
       //add to history
       const userID = user.uid; //get whoever is logged in
-      console.log(userID);
-      //const docRef = doc(db, "users", "EZU4Ts8H9vR4XtDWGl4g");
-      //const docSnap = await getDoc(docRef);    
-      /*
-      const userRef = doc(db, "users", userID)
-      console.log(userRef);
-      await updateDoc(userRef, {
-        submitted: true
+      console.log(userID); 
+      
+      const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      
+      const docs = await getDocs(q);
+      var docID = "";
+      docs.forEach((doc) => {
+        docID = doc.id;
+      })
+      
+      const docRef = doc(db, "users", docID);
+      await updateDoc(docRef,{
+        submitted: false
       });
-      */
+      
     }
     console.log(JSON.stringify({'text': summaryText, 'loggedIn': loggedIn}));
     const r = fetch("https://avganshina.pythonanywhere.com/model", {
