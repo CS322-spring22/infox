@@ -13,6 +13,7 @@ import {
   addDoc,
   updateDoc,
   doc,
+  arrayUnion,
 } from "firebase/firestore";
 
 /*
@@ -109,7 +110,7 @@ function SendSummary(){
       //with that docID, update the doc
       const docRef = doc(db, "users", docID);
       await updateDoc(docRef,{
-        submitted: false
+        history: arrayUnion(summaryText)
       });
       
     }

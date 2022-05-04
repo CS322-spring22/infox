@@ -17,7 +17,7 @@ function History(){
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      doc.data().History.forEach(s => {
+      doc.data().history.forEach(s => {
         console.log(s); //get all of history
       });
     });
