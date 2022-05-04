@@ -97,14 +97,16 @@ function SendSummary(){
       const userID = user.uid; //get whoever is logged in
       console.log(userID); 
       
+      //look for all documents
       const q = query(collection(db, "users"), where("uid", "==", user.uid));
-      
       const docs = await getDocs(q);
       var docID = "";
+      //should only be one per user, get its docID
       docs.forEach((doc) => {
         docID = doc.id;
       })
       
+      //with that docID, update the doc
       const docRef = doc(db, "users", docID);
       await updateDoc(docRef,{
         submitted: false
