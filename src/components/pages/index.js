@@ -87,6 +87,7 @@ function SendSummary(){
   // [] AROUND USER IS IMPORTANT
   const [user] = useAuthState(auth)
   var loggedIn = true;
+  var docRef;
   let handleSubmit = async (e) => {
     e.preventDefault();
     if (!user){
@@ -108,10 +109,7 @@ function SendSummary(){
       })
       
       //with that docID, update the doc
-      const docRef = doc(db, "users", docID);
-      await updateDoc(docRef,{
-        history: arrayUnion(summaryText)
-      });
+      docRef = doc(db, "users", docID);
       
     }
     console.log(JSON.stringify({'text': summaryText, 'loggedIn': loggedIn}));
@@ -129,6 +127,9 @@ function SendSummary(){
     const showAlert = () => {
       r.then((a) => {
         alert(a)
+        updateDoc(docRef,{
+          history: arrayUnion(summaryText + " : " + a) //put the summary text and the result in the database
+        });
       });
     }
     showAlert();
