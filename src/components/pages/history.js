@@ -4,7 +4,6 @@ import { db } from '../../firebase';
 import { auth } from '../../firebase';
 import { collection, doc, getDocs, setDoc, addDoc, query, where, getDoc, deleteField, updateDoc } from 'firebase/firestore';
 
-var btntitle = "yolmao";
 
 function History(){
   const user = useAuthState(auth);
