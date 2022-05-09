@@ -20,7 +20,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<SendSummary />} />
           <Route path="/settings" element={Settings} />
-          <Route path="/history" element={History} />
+          <Route path="/history" element={<History />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/resetpass" element={<Reset />} />
