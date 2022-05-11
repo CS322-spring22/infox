@@ -2,13 +2,15 @@ import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { db } from '../../firebase';
 import { auth } from '../../firebase';
-import { collection, doc, getDocs, setDoc, addDoc, query, where, getDoc, deleteField, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, setDoc, addDoc, query, where, getDoc, deleteField, updateDoc, orderBy, limit } from 'firebase/firestore';
 
 
 function History(){
+  
   const user = useAuthState(auth);
+  
   let showHist = async (e) => {
-    console.log("button pressed");
+    console.log("ShowHist pressed");
     if (!user){
       console.log("no user logged in");
     }
@@ -24,8 +26,11 @@ function History(){
     });
   }
 
+
+
+
   let clearHist = async (e) => {
-    console.log("button pressed");
+    console.log("clearHist pressed");
     if (!user){
       console.log("no user logged in");
     }
@@ -45,6 +50,20 @@ function History(){
 
 
 
+
+  let showGlobal = async (e) => {
+    console.log("ShowGlobal pressed");
+    const q = query(collection(db, "gHistory"), orderBy("date"), limit(3));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log("input:\n" + doc.data().input + "\noutput:\n" + doc.data().output);
+    });
+    
+  }
+
+
+
+
   return (
     <div>
         <h1>Print</h1>
@@ -54,6 +73,10 @@ function History(){
         <h1> Clear</h1>
         <button className="login__btn login__google" onClick={clearHist}>
           Clear History
+        </button>
+        <h1> Global History</h1>
+        <button className="login__btn login__google" onClick={showGlobal}>
+          Show Global History
         </button>
     </div>
     
