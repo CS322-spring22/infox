@@ -115,7 +115,7 @@ function SendSummary(){
     console.log(JSON.stringify({'text': summaryText, 'loggedIn': loggedIn}));
     const r = fetch("https://avganshina.pythonanywhere.com/model", {
     //const r = fetch("/model", { 
-      method: 'POST', 
+      method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({'text': summaryText, 'loggedIn': loggedIn})
     }).then((response) => response.json())

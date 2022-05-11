@@ -51,6 +51,7 @@ function History(){
 
 
 
+  /*
   let showGlobal = async (e) => {
     console.log("button pressed");
     const q = query(collection(db, "users"), where("uid", "==", userID));
@@ -64,7 +65,7 @@ function History(){
         history: deleteField()
       });
   }
-
+  */
 
 
 
@@ -77,10 +78,6 @@ function History(){
         <h1> Clear</h1>
         <button className="login__btn login__google" onClick={clearHist}>
           Clear History
-        </button>
-        <h1> Global History</h1>
-        <button className="login__btn login__google" onClick={showGlobal}>
-          Show Global History
         </button>
     </div>
     
