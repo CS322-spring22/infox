@@ -19,10 +19,14 @@ function History(){
     const q = query(collection(db, "users"), where("uid", "==", userID));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      doc.data().history.forEach(s => {
-        console.log(s); //get all of history
-      });
+      if (!doc.data().history){
+        console.log("no history yet");
+      }
+      else{
+        doc.data().history.forEach(s => {
+          console.log(s); //get all of history
+        });
+      }
     });
   }
 
