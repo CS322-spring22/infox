@@ -14,6 +14,8 @@ import {
   updateDoc,
   doc,
   arrayUnion,
+  Timestamp,
+  Firestore,
 } from "firebase/firestore";
 
 /*
@@ -126,9 +128,17 @@ function SendSummary(){
 
     const showAlert = () => {
       r.then((a) => {
+        //show output
         alert(a)
+        //update user history
         updateDoc(docRef,{
           history: arrayUnion(summaryText + " : " + a) //put the summary text and the result in the database
+        });
+        //update global history
+        addDoc(collection(db, "gHistory"), {
+          input: summaryText,
+          output: a,
+          date: new Date()
         });
       });
     }
