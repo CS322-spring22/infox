@@ -6,7 +6,9 @@ import { collection, doc, getDocs, setDoc, addDoc, query, where, getDoc, deleteF
 
 
 function History(){
+  
   const user = useAuthState(auth);
+  
   let showHist = async (e) => {
     console.log("button pressed");
     if (!user){
@@ -23,6 +25,9 @@ function History(){
       });
     });
   }
+
+
+
 
   let clearHist = async (e) => {
     console.log("button pressed");
@@ -45,6 +50,24 @@ function History(){
 
 
 
+
+  let showGlobal = async (e) => {
+    console.log("button pressed");
+    const q = query(collection(db, "users"), where("uid", "==", userID));
+    const querySnapshot = await getDocs(q);
+    var docID;
+    querySnapshot.forEach((doc) => {
+      docID = doc.id;
+    });
+    const docRef = doc(db, "users", docID);
+      await updateDoc(docRef,{
+        history: deleteField()
+      });
+  }
+
+
+
+
   return (
     <div>
         <h1>Print</h1>
@@ -54,6 +77,10 @@ function History(){
         <h1> Clear</h1>
         <button className="login__btn login__google" onClick={clearHist}>
           Clear History
+        </button>
+        <h1> Global History</h1>
+        <button className="login__btn login__google" onClick={showGlobal}>
+          Show Global History
         </button>
     </div>
     
