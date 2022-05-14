@@ -1,0 +1,33 @@
+.container {
+    margin: 100px auto;
+    width: 1000px;
+    box-shadow: 0 5px 8px 0 #fff, 0 7px 20px 0 #54C6F2;
+    position: relative;
+    border-radius: 10px;
+    height: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .content-right {
+    border-radius: 0 10px 10px 0;
+    position: relative;
+    background: #1F2427;
+  }
+
+  .content-left {
+    background: linear-gradient(
+      90deg,
+      #1F2427 0%,
+      #1F2427 100%
+    );
+    border-radius: 10px 0 0 10px;
+    position: relative;
+  }
+
+  .header {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #FFF;
+  }

@@ -10,7 +10,9 @@ import SignUp from './components/pages/signup';
 import SignIn from './components/pages/signin'
 import Dashboard from './components/pages/Dashboard';
 import Reset from './components/pages/Reset';
-
+import General from './components/pages/Settings/general';
+import Payment from './components/pages/Settings/payment';
+import Profile from './components/pages/Settings/profile';
 
 function App() {
   return (
@@ -19,12 +21,15 @@ function App() {
         <Index />
         <Routes>
           <Route path="/" exact element={<SendSummary />} />
-          <Route path="/settings" element={Settings} />
-          <Route path="/history" element={History} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/history" element={<History />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
           <Route path="/resetpass" element={<Reset />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/general" element={<General />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/payment" element={<Payment />} />
         </Routes>
       </Router>
     </div>

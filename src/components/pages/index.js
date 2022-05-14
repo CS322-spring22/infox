@@ -100,6 +100,7 @@ function SendSummary(){
     showAlert();
   };
 
+  const [characterCount, setCharacterCount] = useState(0);
 
   return(
     <div className="form-box">
@@ -110,9 +111,10 @@ function SendSummary(){
           <textarea
               type="text"
               value={summaryText}
-              onChange={(e) => setSummaryText(e.target.value)}
+              onChange={(e) => { setCharacterCount(e.target.value.length); setSummaryText(e.target.value)}}
               placeholder="Paste Article"
             />
+            <p className='text'>Characters: {characterCount} / 200</p>
             <button className="input_btn">
               Submit
             </button>

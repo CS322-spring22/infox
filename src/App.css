@@ -1,5 +1,10 @@
 @import url('https://fonts.googlepis.com/css2?family=Sora&display=swap');
 
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
 *{
   font-family: 'Sora', sans-serif;
   box-sizing: border-box;

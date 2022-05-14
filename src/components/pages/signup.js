@@ -23,7 +23,9 @@ function SignUp() {
   }, [user, loading]);
   return (
     <div className="form-container">
-      <div className="form-content-left"></div>
+      <div className="form-content-left">
+        <img className='form-img' src={"public/img/img-2.jpg"}/>
+      </div>
       <div className="form-content-right">
         <div className="form">
           <h1>Get started with us today! Create your account by filling out the

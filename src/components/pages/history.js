@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useState} from 'react'
+import "./history.css";
 
 const History = () => {
   return (
@@ -10,7 +11,14 @@ const History = () => {
         color: 'white'
         }}
     >
-        <h1>History</h1>
+        <div className='container'>
+        <div className='content-left'>
+          <h1 className='header'>User History</h1>
+        </div>
+          <div className='content-right'>
+            <h1 className='header'>Global History</h1>
+          </div>
+        </div>
     </div>
   )
 }
