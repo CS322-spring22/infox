@@ -1,12 +1,37 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { db } from '../../firebase';
 import { auth } from '../../firebase';
 import { collection, doc, getDocs, setDoc, addDoc, query, where, getDoc, deleteField, updateDoc, orderBy, limit } from 'firebase/firestore';
 
+//array that contains all global history
+const globalInput = [];
+const globalOutput = [];
+
+//array that contains user history
+const hInput = [];
+const hOutput = [];
 
 function History(){
+  //global inputs
+  const [gInput1, setgInput1] = useState("");
+  const [gInput2, setgInput2] = useState("");
+  const [gInput3, setgInput3] = useState("");
+  //global outputs
+  const [gOutput1, setgOutput1] = useState("");
+  const [gOutput2, setgOutput2] = useState("");
+  const [gOutput3, setgOutput3] = useState("");
   
+  //user inputs
+  const [hInput1, sethInput1] = useState("");
+  const [hInput2, sethInput2] = useState("");
+  const [hInput3, sethInput3] = useState("");
+  //user outputs
+  const [hOutput1, sethOutput1] = useState("");
+  const [hOutput2, sethOutput2] = useState("");
+  const [hOutput3, sethOutput3] = useState("");
+
+
   const user = useAuthState(auth);
   
   let showHist = async (e) => {
@@ -25,9 +50,21 @@ function History(){
       else{
         doc.data().history.forEach(s => {
           console.log(s); //get all of history
+          //input and output are a single string split by :
+          var arr = s.split(":")
+          //put those split things into their own arrays
+          hInput.push(arr[0]);
+          hOutput.push(arr[1]);
         });
       }
     });
+    //assign them from arrays
+    sethInput1(hInput[0]);
+    sethOutput1(hOutput[0]);
+    sethInput2(hInput[1]);
+    sethOutput2(hOutput[1]);
+    sethInput3(hInput[2]);
+    sethOutput3(hOutput[2]);
   }
 
 
@@ -57,10 +94,24 @@ function History(){
 
   let showGlobal = async (e) => {
     console.log("ShowGlobal pressed");
+    //get 3 most recent searches
     const q = query(collection(db, "gHistory"), orderBy("date"), limit(3));
     const querySnapshot = await getDocs(q);
+    
     querySnapshot.forEach((doc) => {
       console.log("input:\n" + doc.data().input + "\noutput:\n" + doc.data().output);
+      //add them to global arrays
+      if (globalInput.indexOf(doc.data().input === -1)){ //dunno if this if statement works
+        globalInput.push(doc.data().input);
+        globalOutput.push(doc.data().output)
+      }
+      //set the important variables
+      setgInput1(globalInput[0]);
+      setgOutput1(globalOutput[0]);
+      setgInput2(globalInput[1]);
+      setgOutput2(globalOutput[1]);
+      setgInput3(globalInput[2]);
+      setgOutput3(globalOutput[2]);
     });
     
   }
@@ -82,8 +133,22 @@ function History(){
         <button className="login__btn login__google" onClick={showGlobal}>
           Show Global History
         </button>
+        <h1>Global History</h1>
+        <h1> {gInput1}</h1>
+        <p>{gOutput1}</p>
+        <h1> {gInput2}</h1>
+        <p>{gOutput2}</p>
+        <h1> {gInput3}</h1>
+        <p>{gOutput3}</p>
+        
+        <h1>User History</h1>
+        <h1> {hInput1}</h1>
+        <p>{hOutput1}</p>
+        <h1> {hInput2}</h1>
+        <p>{hOutput2}</p>
+        <h1> {hInput3}</h1>
+        <p>{hOutput3}</p>
     </div>
-    
   )
 }
 
