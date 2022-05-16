@@ -115,7 +115,8 @@ function SendSummary(){
     console.log(JSON.stringify({'text': summaryText, 'loggedIn': loggedIn}));
     const r = fetch("https://avganshina.pythonanywhere.com/model", {
     //const r = fetch("/model", { 
-      method: 'POST',
+      method: 'POST', 
+
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({'text': summaryText, 'loggedIn': loggedIn})
     }).then((response) => response.json())
@@ -126,9 +127,17 @@ function SendSummary(){
 
     const showAlert = () => {
       r.then((a) => {
+        //show output
         alert(a)
+        //update user history
         updateDoc(docRef,{
           history: arrayUnion(summaryText + " : " + a) //put the summary text and the result in the database
+        });
+        //update global history
+        addDoc(collection(db, "gHistory"), {
+          input: summaryText,
+          output: a,
+          date: new Date()
         });
       });
     }
