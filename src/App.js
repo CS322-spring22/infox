@@ -4,7 +4,7 @@ import Index from './components/Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/pages';
 import SendSummary from './components/pages';
-import Settings from './components/pages/settings';
+import Settings from './components/pages/Settings/settings';
 import History from './components/pages/history';
 import SignUp from './components/pages/signup';
 import SignIn from './components/pages/signin'
