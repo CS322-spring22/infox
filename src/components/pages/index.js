@@ -2,8 +2,19 @@ import { render } from '@testing-library/react';
 import React, { useState } from "react";
 import SignUp from './signup';
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from '../../firebase';
+import { auth, db } from '../../firebase';
 import './index.css'
+import {
+  getFirestore,
+  query,
+  getDocs,
+  collection,
+  where,
+  addDoc,
+  updateDoc,
+  doc,
+  arrayUnion,
+} from "firebase/firestore";
 
 /*
 const Home = () => {
@@ -73,17 +84,39 @@ class NameForm extends React.Component {
 */
 function SendSummary(){
   const [summaryText, setSummaryText] = useState("");
+  // [] AROUND USER IS IMPORTANT
   const [user] = useAuthState(auth)
   var loggedIn = true;
+  var docRef;
   let handleSubmit = async (e) => {
+    e.preventDefault();
     if (!user){
       console.log("no user logged in");
       loggedIn = false;
     }
-    e.preventDefault();
+    else{
+      //add to history
+      const userID = user.uid; //get whoever is logged in
+      console.log(userID); 
+      
+      //look for all documents
+      const q = query(collection(db, "users"), where("uid", "==", user.uid));
+      const docs = await getDocs(q);
+      var docID = "";
+      //should only be one per user, get its docID
+      docs.forEach((doc) => {
+        docID = doc.id;
+      })
+      
+      //with that docID, update the doc
+      docRef = doc(db, "users", docID);
+      
+    }
     console.log(JSON.stringify({'text': summaryText, 'loggedIn': loggedIn}));
     const r = fetch("https://avganshina.pythonanywhere.com/model", {
+    //const r = fetch("/model", { 
       method: 'POST', 
+
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({'text': summaryText, 'loggedIn': loggedIn})
     }).then((response) => response.json())
@@ -94,7 +127,18 @@ function SendSummary(){
 
     const showAlert = () => {
       r.then((a) => {
+        //show output
         alert(a)
+        //update user history
+        updateDoc(docRef,{
+          history: arrayUnion(summaryText + " : " + a) //put the summary text and the result in the database
+        });
+        //update global history
+        addDoc(collection(db, "gHistory"), {
+          input: summaryText,
+          output: a,
+          date: new Date()
+        });
       });
     }
     showAlert();

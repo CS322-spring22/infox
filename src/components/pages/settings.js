@@ -1,12 +1,13 @@
 import { render } from '@testing-library/react'
 import React from 'react'
 import Sidebar from '../Sidebar/Sidebar'
-import {SettingsPane, SettingsPage, SettingsContent, SettingsMenu} from 'react-settings-pane'
+import './settings.css'
 
 const Settings = () => {
   return (
     <div>
       <Sidebar />
+      <h1 className='text'>Hello</h1>
     </div>
   )
 }

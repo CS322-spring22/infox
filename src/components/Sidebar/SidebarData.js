@@ -15,20 +15,5 @@ export const SidebarData = [
         title: "Profile",
         link: "/profile",
         icon: <CgProfile />
-    },
-    {
-        title: "Payment",
-        link: "/payment",
-        icon: <MdPayment />
-    },
-    {
-        title: "Privacy",
-        link: "/privacy",
-        icon: <MdPrivacyTip />
-    },
-    {
-        title: "Accessibility",
-        link: "/accessibility",
-        icon: <GrAccessibility />
     }
 ]

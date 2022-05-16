@@ -24,10 +24,9 @@ headers = {"Authorization": f"Bearer {API_TOKEN}"}
 def check_input():
     print("checking input")
     if request.method == 'POST':
-        print(request.json['text']) #here is the text to summarize
-        print(request.json['loggedIn']) #should be true if user is logged in
-        #TO DO----
-        #Check summary length using boolean from 'loggedIn'
+        print("text to summarize: " + request.json['text']) #here is the text to summarize
+        print("is user logged in: " + str(request.json['loggedIn'])) #should be true if user is logged in
+        #TODO Check summary length using boolean from 'loggedIn'
         input = request.json['text']
         response = requests.post(API_URL, headers=headers, json=input)
         output = response.json()
