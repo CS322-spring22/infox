@@ -129,9 +129,9 @@ function History(){
           <button className="history-button-left" onClick={showHist}>
             Show User History
           </button>
-          <button className="bottom-button" onClick={clearHist}>
+          {/* <button className="bottom-button" onClick={clearHist}>
             Clear History
-          </button>
+          </button> */}
           <p className='history-text'>{hOutput1}</p>
           <h1 className='history-title'> {hInput1}</h1>
           <p className='history-text'>{hOutput2}</p>
