@@ -6,7 +6,7 @@ const General = () => {
   return (
         <div>
             <Sidebar />
-            <h1>Hello</h1>
+            <h1></h1>
         </div>
   )
 }

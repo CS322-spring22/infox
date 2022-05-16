@@ -7,7 +7,7 @@ const Settings = () => {
   return (
     <div>
       <Sidebar />
-      <h1 className='text'>Hello</h1>
+      <h1 className='text'></h1>
     </div>
   )
 }

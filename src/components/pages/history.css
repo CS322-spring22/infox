@@ -58,14 +58,13 @@
   height: 20px;
   margin-top: 15px;
   margin-bottom: 1rem;
+  margin-left: 6rem;
   border-radius: 2px;
   background-color: #54C6F2;
   outline: none;
   border: none;
   color: #1F2427;
   font-size: 1rem;
-  position: absolute;
-  right: 20%;
 }
 
 .history-button-right {
