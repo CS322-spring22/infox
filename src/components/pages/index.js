@@ -139,6 +139,8 @@ function SendSummary(){
           output: a,
           date: new Date()
         });
+        //TODO
+        //remove oldest Global History here to prevent database bloating
       });
     }
     showAlert();
