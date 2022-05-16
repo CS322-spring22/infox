@@ -59,12 +59,13 @@ function History(){
       }
     });
     //assign them from arrays
-    sethInput1(hInput[0]);
-    sethOutput1(hOutput[0]);
-    sethInput2(hInput[1]);
-    sethOutput2(hOutput[1]);
-    sethInput3(hInput[2]);
-    sethOutput3(hOutput[2]);
+    //get the last 3 elements from the array, since these are the 3 most recently added things
+    sethInput1(hInput[hInput.length-1]);
+    sethOutput1(hOutput[hInput.length-1]);
+    sethInput2(hInput[hInput.length-2]);
+    sethOutput2(hOutput[hInput.length-2]);
+    sethInput3(hInput[hInput.length-3]);
+    sethOutput3(hOutput[hInput.length-3]);
   }
 
 
