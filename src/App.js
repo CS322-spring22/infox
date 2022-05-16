@@ -13,6 +13,8 @@ import Reset from './components/pages/Reset';
 import General from './components/pages/Settings/general';
 import Payment from './components/pages/Settings/payment';
 import Profile from './components/pages/Settings/profile';
+import Accessibility from './components/pages/Settings/accessibility';
+import Privacy from './components/pages/Settings/privacy';
 
 function App() {
   return (
@@ -30,6 +32,8 @@ function App() {
           <Route path="/general" element={<General />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/payment" element={<Payment />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/accessibility" element={<Accessibility />} />
         </Routes>
       </Router>
     </div>

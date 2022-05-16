@@ -114,7 +114,7 @@ function SendSummary(){
               onChange={(e) => { setCharacterCount(e.target.value.length); setSummaryText(e.target.value)}}
               placeholder="Paste Article"
             />
-            <p className='text'>Characters: {characterCount} / 200</p>
+            <p className='text'>Characters: {characterCount}</p>
             <button className="input_btn">
               Submit
             </button>
@@ -126,4 +126,3 @@ function SendSummary(){
 
 //export default Home;
 export default SendSummary;
-
