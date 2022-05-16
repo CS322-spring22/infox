@@ -32,14 +32,15 @@ function History(){
   const [hOutput3, sethOutput3] = useState("");
 
 
-  const user = useAuthState(auth);
+  const [user] = useAuthState(auth);
   
   let showHist = async (e) => {
     console.log("ShowHist pressed");
     if (!user){
       console.log("no user logged in");
+      return;
     }
-    const userID = user[0].uid; //get whoever is logged in
+    const userID = user.uid; //get whoever is logged in
     //make query of users data
     const q = query(collection(db, "users"), where("uid", "==", userID));
     const querySnapshot = await getDocs(q);
