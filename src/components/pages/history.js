@@ -96,7 +96,7 @@ function History(){
   let showGlobal = async (e) => {
     console.log("ShowGlobal pressed");
     //get 3 most recent searches
-    const q = query(collection(db, "gHistory"), orderBy("date"), limit(3));
+    const q = query(collection(db, "gHistory"), orderBy("date", "desc"), limit(3));
     const querySnapshot = await getDocs(q);
     
     querySnapshot.forEach((doc) => {
