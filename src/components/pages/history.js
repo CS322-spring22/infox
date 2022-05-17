@@ -101,13 +101,15 @@ function History(){
     const q = query(collection(db, "gHistory"), orderBy("date", "desc"), limit(3));
     const querySnapshot = await getDocs(q);
     
+    //clear current history
+    globalInput.length = 0;
+    globalOutput.length = 0;
+    
     querySnapshot.forEach((doc) => {
       console.log("input:\n" + doc.data().input + "\noutput:\n" + doc.data().output);
       //add them to global arrays
-      if (globalInput.indexOf(doc.data().input === -1)){ //dunno if this if statement works
         globalInput.push(doc.data().input);
         globalOutput.push(doc.data().output)
-      }
       //set the important variables
       setgInput1(globalInput[0]);
       setgOutput1(globalOutput[0]);
