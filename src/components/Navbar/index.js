@@ -1,7 +1,5 @@
 import React from 'react'
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from './NavbarElements'
-import Navbar from 'react-bootstrap/Navbar'
-import NavbarCollapse from 'react-bootstrap/esm/NavbarCollapse'
 
 const Index = () => {
   return (
