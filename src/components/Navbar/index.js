@@ -1,8 +1,17 @@
 import React from 'react'
 import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink} from './NavbarElements'
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from '../../firebase';
 
 const Index = () => {
-  return (
+    var isLogged = "Sign Out";
+    const [user] = useAuthState(auth)
+    if (!user){
+        isLogged = "Sign In";
+        console.log("no usr");
+    }
+    console.log(user);
+    return (
     <>
         <Nav>
             <NavLink to="/">
@@ -17,12 +26,12 @@ const Index = () => {
                     Settings
                 </NavLink>
                 <NavLink to="/signup">
-                    Sign Up
+                    Register
                 </NavLink>
             </NavMenu>
             <NavBtn>
                 <NavBtnLink to="/signin">
-                    Sign In
+                    {isLogged}
                 </NavBtnLink>
             </NavBtn>
         </Nav>
