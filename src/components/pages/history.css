@@ -1,4 +1,4 @@
-.form-container {
+/* .form-container-hist {
   margin: 100px auto;
   width: 1000px;
   box-shadow: 0 5px 8px 0 #fff, 0 7px 20px 0 #fff;
@@ -7,9 +7,9 @@
   height: 600px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-}
+} */
 
-.history-content-left {
+/* .history-content-left {
   background: linear-gradient(
     90deg,
     #1F2427 0%,
@@ -19,26 +19,27 @@
   position: relative;
 }
 
-.form-content-right {
+.history-content-right {
   border-radius: 0 10px 10px 0;
   position: relative;
-  background: #fff;
-}
+  background: #1F2427;
+} */
 
 .form-header {
   font-size: 3rem;
   text-align: center;
   width: 100%;
   margin-bottom: 1rem;
+  margin-top: 1rem;
   color: #fff;
 }
 
 .history-title {
   font-size: 0.5rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 5%;
+  margin-right: 10%;
   text-align: start;
-  width: 100%;
+  width: 90%;
   margin-bottom: 2rem;
   color: #fff;
 }
@@ -46,19 +47,19 @@
 .history-text {
   font-size: 1rem;
   text-align: start;
-  width: 100%;
+  width: 80%;
   margin-bottom: 0.3rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  margin-left: 5%;
+  margin-right: 10%;
   color: #fff;
 }
 
 .history-button-left {
-  width: 60%;
+  width: 40%;
   height: 20px;
   margin-top: 15px;
   margin-bottom: 1rem;
-  margin-left: 6rem;
+  margin-left: 30%;
   border-radius: 2px;
   background-color: #54C6F2;
   outline: none;
@@ -68,9 +69,9 @@
 }
 
 .history-button-right {
-  width: 60%;
+  width: 40%;
   height: 20px;
-  margin-left: 6rem;
+  margin-left: 30%;
   margin-top: 15px;
   margin-bottom: 1rem;
   border-radius: 2px;

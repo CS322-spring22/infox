@@ -1,6 +1,5 @@
 import React from 'react'
 import Sidebar from '../../Sidebar/Sidebar'
-import './settings.css'
 
 const General = () => {
   return (

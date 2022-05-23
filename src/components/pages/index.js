@@ -153,7 +153,7 @@ function SendSummary(){
       <h5 className='form-step'>InfoX Article Summariser</h5>
       <form onSubmit={handleSubmit}>
         <div className="field1">
-          <label>Word Limit: 200</label>
+          <label> </label>
           <textarea
               type="text"
               value={summaryText}

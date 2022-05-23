@@ -1,0 +1,46 @@
+.instructions-title {
+    font-size: 3rem;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    color: #fff;
+  }
+
+  .instructions-sub {
+    font-size: 2rem;
+    text-align: start;
+    width: 80%;
+    margin-bottom: 0.5rem;
+    margin-left: 5%;
+    margin-right: 10%;
+    margin-top: 2rem;
+    color: #fff;
+  }
+
+  .instructions-text {
+    font-size: 1rem;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: start;
+    width: 90%;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .instructions-text2 {
+    font-size: 1rem;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 1rem;
+    text-align: start;
+    width: 90%;
+    margin-bottom: 1rem;
+    color: #fff;
+  }
+
+  .link {
+    font-size: 1rem;
+    text-align: start;
+    color: #fff;
+  }

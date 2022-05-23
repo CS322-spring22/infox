@@ -123,8 +123,9 @@ function History(){
 
 
   return (
-    <div className='form-container'>
-      <div className='history-content-left'>
+    <div className='form-container-hist'>
+      <div className='history-content-left'
+      style={{whiteSpace: 'pre-wrap', overflowWrap: 'break-word'}}>
           <h1 className='form-header'>User History</h1>
           <button className="history-button-left" onClick={showHist}>
             Show User History
