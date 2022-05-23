@@ -12,6 +12,7 @@ import Dashboard from './components/pages/Dashboard';
 import Reset from './components/pages/Reset';
 import General from './components/pages/Settings/general';
 import Profile from './components/pages/Settings/profile';
+import Instructions from './components/pages/instructions';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/general" element={<General />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/instructions" element={<Instructions />} />
         </Routes>
       </Router>
     </div>
