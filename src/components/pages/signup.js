@@ -24,7 +24,6 @@ function SignUp() {
   return (
     <div className="form-container">
       <div className="form-content-left">
-        <img className='form-img' src={"public/img/img-2.jpg"}/>
       </div>
       <div className="form-content-right">
         <div className="form">
