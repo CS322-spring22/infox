@@ -78,7 +78,7 @@
 
 .output_text {
   text-align: center;
-  color: rgb(223, 223, 223);
+  color: white;
   font-size: 30px;
   font-style: italic;
 }
@@ -91,6 +91,14 @@
     margin: 1vw;
     padding: 2vw ;
     position:relative; 
-    
+    animation: zoom-in .25s ease;
     /* position:relative for .prevBtn and .nextBtn position:absolute; */
+}
+@keyframes zoom-in {
+  0% {
+    transform: scale(.5, .5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
 }

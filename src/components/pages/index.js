@@ -63,10 +63,17 @@ function SendSummary(){
     }).then((response) => response.json())
     .then((data) => {
       console.log(data); //this shows the dictionary with key and response
-      setIsLoading(false); //pseudo works here
       var out = data['summary_text'];
-      setSummaryOutput(data['summary_text']);
-      setFinished(true);
+      if (out == "That is not a sufficient article" || out == "Something went wrong... Try again!"){
+        alert(out);
+        setIsLoading(false);
+      }
+      else{
+        setIsLoading(false); //pseudo works here
+        setSummaryOutput(data['summary_text']);
+        setFinished(true);
+
+      }
       updateDoc(docRef,{
         history: arrayUnion(summaryText + " : " + out) //put the summary text and the result in the database
       });
