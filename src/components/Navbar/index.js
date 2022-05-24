@@ -8,9 +8,7 @@ const Index = () => {
     const [user] = useAuthState(auth)
     if (!user){
         isLogged = "Sign In";
-        console.log("no usr");
     }
-    console.log(user);
     return (
     <>
         <Nav>
