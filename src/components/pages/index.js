@@ -21,6 +21,7 @@ import LoadingSpinner from '../loading';
 function SendSummary(){
   const [summaryText, setSummaryText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [summaryOutput, setSummaryOutput] = useState("");
   // [] AROUND USER IS IMPORTANT
 
   const [user] = useAuthState(auth)
@@ -62,13 +63,29 @@ function SendSummary(){
     .then((data) => {
       console.log(data); //this shows the dictionary with key and response
       setIsLoading(false); //pseudo works here
-      return(data['summary_text']); //this shows just the response
+      var out = data['summary_text'];
+      setSummaryOutput(data['summary_text']);
+
+      updateDoc(docRef,{
+        history: arrayUnion(summaryText + " : " + out) //put the summary text and the result in the database
+      });
+      //update global history
+      if (out != "That is not a sufficient article" && out != "Something went wrong... Try again!"){
+        addDoc(collection(db, "gHistory"), {
+          input: summaryText,
+          output: out,
+          date: new Date()
+        });
+      }
+      //return(data['summary_text']); //this shows just the response
 
     });
+    /*
     const showAlert = () => {
       r.then((a) => {
         //show output
-        alert(a)
+        alert(a);
+        setSummaryOutput(a);
         //update user history
         updateDoc(docRef,{
           history: arrayUnion(summaryText + " : " + a) //put the summary text and the result in the database
@@ -83,10 +100,12 @@ function SendSummary(){
         //remove oldest Global History here to prevent database bloating
       });
     }
-    showAlert();
+    */
+    //showAlert();
   };
 
   const [characterCount, setCharacterCount] = useState(0);
+  /*
   const genRender = (
     <div className="form-box">
       <h5 className='form-step'>InfoX Article Summariser</h5>
@@ -105,12 +124,30 @@ function SendSummary(){
             </button>
             </div>
       </form>
-      <p>"hello"</p>
+      <p>{summaryOutput}</p>
     </div>
   )
+  */
   return(
-    <div>
-      {isLoading ? <LoadingSpinner/>: genRender}
+      <div className="form-box">
+      <h5 className='form-step'>InfoX Article Summariser</h5>
+      {isLoading ? <LoadingSpinner/>: ""}
+      <form onSubmit={handleSubmit}>
+        <div className="field1">
+          <label>Word Limit: 200</label>
+          <textarea
+              type="text"
+              value={summaryText}
+              onChange={(e) => { setCharacterCount(e.target.value.length); setSummaryText(e.target.value)}}
+              placeholder="Paste Article"
+            />
+            <p className='text'>Characters: {characterCount}</p>
+            <button className="input_btn" disabled={isLoading}>
+              Submit
+            </button>
+            </div>
+      </form>
+      <p>{summaryOutput}</p>
     </div>
   )
 }
