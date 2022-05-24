@@ -22,6 +22,7 @@ function SendSummary(){
   const [summaryText, setSummaryText] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [summaryOutput, setSummaryOutput] = useState("");
+  const [finished, setFinished] = useState(false);
   // [] AROUND USER IS IMPORTANT
 
   const [user] = useAuthState(auth)
@@ -65,7 +66,7 @@ function SendSummary(){
       setIsLoading(false); //pseudo works here
       var out = data['summary_text'];
       setSummaryOutput(data['summary_text']);
-
+      setFinished(true);
       updateDoc(docRef,{
         history: arrayUnion(summaryText + " : " + out) //put the summary text and the result in the database
       });
@@ -105,40 +106,25 @@ function SendSummary(){
   };
 
   const [characterCount, setCharacterCount] = useState(0);
-  /*
-  const genRender = (
-    <div className="form-box">
-      <h5 className='form-step'>InfoX Article Summariser</h5>
-      <form onSubmit={handleSubmit}>
-        <div className="field1">
-          <label>Word Limit: 200</label>
-          <textarea
-              type="text"
-              value={summaryText}
-              onChange={(e) => { setCharacterCount(e.target.value.length); setSummaryText(e.target.value)}}
-              placeholder="Paste Article"
-            />
-            <p className='text'>Characters: {characterCount}</p>
-            <button className="input_btn" disabled={isLoading}>
-              Submit
-            </button>
-            </div>
-      </form>
-      <p>{summaryOutput}</p>
+  
+  const outputRender = (
+    <div className="output_container">
+      <p className='output_text'>{summaryOutput}</p>
     </div>
   )
-  */
+  
   return(
       <div className="form-box">
       <h5 className='form-step'>InfoX Article Summariser</h5>
-      {isLoading ? <LoadingSpinner/>: ""}
       <form onSubmit={handleSubmit}>
         <div className="field1">
           <label>Word Limit: 200</label>
+          {isLoading ? <LoadingSpinner/>: ""}
+          {finished ? outputRender: ""}
           <textarea
               type="text"
               value={summaryText}
-              onChange={(e) => { setCharacterCount(e.target.value.length); setSummaryText(e.target.value)}}
+              onChange={(e) => { setCharacterCount(e.target.value.length); setSummaryText(e.target.value); setFinished(false)}}
               placeholder="Paste Article"
             />
             <p className='text'>Characters: {characterCount}</p>
@@ -147,7 +133,6 @@ function SendSummary(){
             </button>
             </div>
       </form>
-      <p>{summaryOutput}</p>
     </div>
   )
 }
