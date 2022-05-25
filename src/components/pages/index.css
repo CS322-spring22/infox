@@ -75,3 +75,30 @@
   );
   transition: all 0.4s ease-out;
 }
+
+.output_text {
+  text-align: center;
+  color: white;
+  font-size: 30px;
+  font-style: italic;
+}
+
+.output_container {
+  min-width: 80%;
+    height:fit-content;
+    background-color: #323b41;
+    /* border: 1px solid red; */
+    margin: 1vw;
+    padding: 2vw ;
+    position:relative; 
+    animation: zoom-in .25s ease;
+    /* position:relative for .prevBtn and .nextBtn position:absolute; */
+}
+@keyframes zoom-in {
+  0% {
+    transform: scale(.5, .5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
