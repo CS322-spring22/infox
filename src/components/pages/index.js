@@ -121,24 +121,25 @@ function SendSummary(){
   )
   
   return(
-      <div className="form-box">
+    <div className="form-box">
       <h5 className='form-step'>InfoX Article Summariser</h5>
       <form onSubmit={handleSubmit}>
         <div className="field1">
-          <label>Minimum Character Limit: ???</label>
-          {isLoading ? <LoadingSpinner/>: ""}
-          {finished ? outputRender: ""}
+          <label>Minimum Character Limit: 300</label>
+          {/* {isLoading ? <LoadingSpinner /> : ""}
+          {finished ? outputRender : ""} */}
           <textarea
-              type="text"
-              value={summaryText}
-              onChange={(e) => { setCharacterCount(e.target.value.length); setSummaryText(e.target.value); setFinished(false)}}
-              placeholder="Paste Article"
-            />
-            <p className='text'>Characters: {characterCount}</p>
-            <button className="input_btn" disabled={isLoading}>
-              Submit
-            </button>
-            </div>
+            type="text"
+            value={summaryText}
+            onChange={(e) => { setCharacterCount(e.target.value.length); setSummaryText(e.target.value); setFinished(false); } }
+            placeholder="Paste Article" />
+          <p className='text'>Characters: {characterCount}</p>
+          <button className="input_btn" disabled={isLoading}>
+            Submit
+          </button>
+          {isLoading ? <LoadingSpinner /> : ""}
+          {finished ? outputRender : ""}
+        </div>
       </form>
     </div>
   )

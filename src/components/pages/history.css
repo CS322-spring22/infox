@@ -57,8 +57,8 @@
 .history-button-left {
   width: 40%;
   height: 20px;
-  margin-top: 15px;
-  margin-bottom: 1rem;
+  /* margin-top: 15px; */
+  margin-bottom: 2rem;
   margin-left: 30%;
   border-radius: 2px;
   background-color: #54C6F2;
@@ -72,8 +72,8 @@
   width: 40%;
   height: 20px;
   margin-left: 30%;
-  margin-top: 15px;
-  margin-bottom: 1rem;
+  /* margin-top: 15px; */
+  margin-bottom: 2rem;
   border-radius: 2px;
   background-color: #54C6F2;
   outline: none;
