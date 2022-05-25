@@ -125,7 +125,7 @@ function SendSummary(){
       <h5 className='form-step'>InfoX Article Summariser</h5>
       <form onSubmit={handleSubmit}>
         <div className="field1">
-          <label>Minimum Character Limit: 500</label>
+          <label>Minimum Character Limit: ???</label>
           {isLoading ? <LoadingSpinner/>: ""}
           {finished ? outputRender: ""}
           <textarea
